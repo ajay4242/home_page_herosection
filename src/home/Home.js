@@ -8,14 +8,18 @@ import {
   Typography,
   Card,
   Button,
+
   Hidden,
   Box,
   withStyles,
   withWidth,
   isWidthUp,
 } from "@material-ui/core";
-import WaveBorder from "./WaveBorder";
-import ZoomImage from "./ZoomImage";
+import WaveBorder from "../component/waveborder/WaveBorder";
+import Lottyanimation from "./../component/lotty/lottyanimation";
+import one from "./../component/lotty/lotty_file/one.json";
+import Textanimation from "../component/textanimation/Textanimation";
+
 AOS.init({ once: false });
 
 const styles = (theme) => ({
@@ -69,7 +73,8 @@ const styles = (theme) => ({
   },
   wrapper: {
     position: "relative",
-    backgroundColor: theme.palette.secondary.main,
+    // backgroundColor: theme.palette.secondary.main,
+    
     paddingBottom: theme.spacing(2),
   },
   image: {
@@ -99,15 +104,17 @@ const styles = (theme) => ({
   waveBorder: {
     paddingTop: theme.spacing(4),
   },
+  
+  
 });
 
 function Home(props) {
   const { classes, theme, width } = props;
   return (
     <Fragment>
-      <div className={classNames("lg-p-top", classes.wrapper)}>
-        <div className={classNames("container-fluid", classes.container)}>
-          <Box display="flex" justifyContent="center" className="row">
+      {/* <div className={classNames("lg-p-top", classes.wrapper)}>
+        <div className={classNames("container-fluid", classes.container)}> */}
+          {/* <Box display="flex" justifyContent="center" className="row"> */}
             <Card
               className={classes.card}
               data-aos-delay="1000"
@@ -126,7 +133,7 @@ function Home(props) {
                         <Typography
                           variant={isWidthUp("lg", width) ? "h3" : "h4"}
                         >
-                          Free Template for building a SaaS app using
+                          Free Template for <Textanimation Text={["ram","ajay","shyam"]}/>building a SaaS app using
                           Material-UI
                         </Typography>
                       </Box>
@@ -153,27 +160,25 @@ function Home(props) {
                       </div>
                     </Box>
                   </Grid>
-                  <Hidden smDown>
-                    <Grid item md={6}>
-                      <ZoomImage
-                        src={`${process.env.PUBLIC_URL}/images/logged_out/headerImage.jpg`}
-                        className={classes.image}
-                        alt="header example"
-                      />
+                  {/* <Hidden smDown> */}
+                    <Grid item  xs={12 } order={{xs:1}} md={6} >
+                   
+                      <Lottyanimation lottyfile={one}/>
                     </Grid>
-                  </Hidden>
+                  {/* </Hidden> */}
                 </Box>
               </div>
             </Card>
-          </Box>
-        </div> 
-      </div>
-      {/* <WaveBorder
+          {/* </Box> */}
+        {/* </div> 
+      </div> */}
+      <WaveBorder
         upperColor={theme.palette.secondary.main}
         lowerColor="#FFFFFF"
         className={classes.waveBorder}
         animationNegativeDelay={2}
-      /> */}
+      />
+   
     </Fragment>
   );
 }
